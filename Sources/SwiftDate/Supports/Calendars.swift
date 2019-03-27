@@ -58,7 +58,9 @@ extension Calendar.Identifier: CustomStringConvertible {
 		case .republicOfChina:		return "republicOfChina"
 		case .islamicTabular:		return "islamicTabular"
 		case .islamicUmmAlQura:		return "islamicUmmAlQura"
-		}
+        @unknown default:
+            fatalError()
+        }
 	}
 
 	public init(_ rawValue: String) {

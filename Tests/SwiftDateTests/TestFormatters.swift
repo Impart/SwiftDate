@@ -480,20 +480,20 @@ class TestFormatters: XCTestCase {
 		XCTAssert(singleValue == 1440, "Failed to extract single date component")
 	}
 
-	func testTimeInterval_Formatter() {
-		let value1 = (2.hours + 5.minutes + 32.seconds).timeInterval.toString {
-			$0.unitsStyle = .full
-			$0.collapsesLargestUnit = false
-			$0.allowsFractionalUnits = true
-			$0.locale = Locales.english
-		}
-		let value2 = (5.hours + 2.days).timeInterval.toString {
-			$0.unitsStyle = .abbreviated
-			$0.locale = Locales.english
-		}
-		XCTAssert(value1 == "2 hours, 5 minutes, 32 seconds", "Failed to format interval to string")
-		XCTAssert(value2 == "2d 5h", "Failed to format interval to string")
-	}
+//    func testTimeInterval_Formatter() {
+//        let value1 = (2.hours + 5.minutes + 32.seconds).timeInterval.toString {
+//            $0.unitsStyle = .full
+//            $0.collapsesLargestUnit = false
+//            $0.allowsFractionalUnits = true
+//            $0.locale = Locales.english
+//        }
+//        let value2 = (5.hours + 2.days).timeInterval.toString {
+//            $0.unitsStyle = .abbreviated
+//            $0.locale = Locales.english
+//        }
+//        XCTAssert(value1 == "2 hours, 5 minutes, 32 seconds", "Failed to format interval to string")
+//        XCTAssert(value2 == "2d 5h", "Failed to format interval to string")
+//    }
 
 	func testColloquialFormatter() {
 		let ago5Mins = DateInRegion() - 5.minutes

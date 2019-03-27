@@ -37,12 +37,12 @@ public protocol RelativeFormatterLang {
 
 public extension RelativeFormatter {
 
-	public enum PluralForm: String {
+    enum PluralForm: String {
 		case zero, one, two, few, many, other
 	}
 
 	/// Style for formatter
-	public struct Style {
+    struct Style {
 
 		/// Flavours supported by the style, specified in order.
 		/// The first available flavour for specified locale is used.
@@ -78,20 +78,20 @@ public extension RelativeFormatter {
 	/// Return the default style for relative formatter.
 	///
 	/// - Returns: style instance.
-	public static func defaultStyle() -> Style {
+    static func defaultStyle() -> Style {
 		return Style(flavours: [.longConvenient, .long], gradation: .convenient())
 	}
 
 	/// Return the time-only style for relative formatter.
 	///
 	/// - Returns: style instance.
-	public static func timeStyle() -> Style {
+    static func timeStyle() -> Style {
 		return Style(flavours: [.longTime], gradation: .convenient())
 	}
 	/// Return the twitter style for relative formatter.
 	///
 	/// - Returns: style instance.
-	public static func twitterStyle() -> Style {
+    static func twitterStyle() -> Style {
 		return Style(flavours: [.tiny, .shortTime, .narrow, .shortTime], gradation: .twitter())
 	}
 
@@ -102,7 +102,7 @@ public extension RelativeFormatter {
 public extension RelativeFormatter {
 
 	/// Supported flavours
-	public enum Flavour: String {
+    enum Flavour: String {
 		case long 				= "long"
 		case longTime 			= "long_time"
 		case longConvenient	 	= "long_convenient"
@@ -125,7 +125,7 @@ public extension RelativeFormatter {
 	/// representation for 300 seconds is in minutes, 5 minutes specifically).
 	/// Rules are executed in order by the parser and the best one (< elapsed interval)
 	/// is returned to be used by the formatter.
-	public struct Gradation {
+    struct Gradation {
 
 		/// A single Gradation rule specification
 		// swiftlint:disable nesting
@@ -281,7 +281,7 @@ public extension RelativeFormatter {
 public extension RelativeFormatter {
 
 	/// Units for relative formatter
-	public enum Unit: String {
+    enum Unit: String {
 		case now 		= "now"
 		case second 	= "second"
 		case minute 	= "minute"
@@ -295,7 +295,7 @@ public extension RelativeFormatter {
 		case other 		= ""
 
 		/// Factor of conversion of the unit to seconds
-		public var factor: Double {
+        var factor: Double {
 			switch self {
 			case .now, .second: return 1
 			case .minute: 		return 1.minutes.timeInterval

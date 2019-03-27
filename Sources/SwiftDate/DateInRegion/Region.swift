@@ -28,10 +28,6 @@ public struct Region: Decodable, Encodable, Equatable, Hashable, CustomStringCon
 		return "{calendar='\(calendar.identifier)', timezone='\(timeZone.identifier)', locale='\(locale.identifier)'}"
 	}
 
-	public var hashValue: Int {
-		return calendar.hashValue
-	}
-
 	// MARK: Initialization
 
 	/// Initialize a new region with given parameters.

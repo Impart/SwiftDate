@@ -15,7 +15,7 @@ public extension DateFormatter {
 	///   - region: region used to pre-configure the cell.
 	///   - format: optional format used to set the `dateFormat` property.
 	/// - Returns: date formatter instance
-	public static func sharedFormatter(forRegion region: Region?, format: String? = nil) -> DateFormatter {
+	static func sharedFormatter(forRegion region: Region?, format: String? = nil) -> DateFormatter {
 		let name = "SwiftDate_\(NSStringFromClass(DateFormatter.self))"
 		let formatter: DateFormatter = threadSharedObject(key: name, create: { return DateFormatter() })
 		if let region = region {
@@ -32,7 +32,7 @@ public extension DateFormatter {
 	/// - Parameter locale: locale to set
 	/// - Returns: number formatter instance
 	@available(iOS 9.0, macOS 10.11, *)
-	public static func sharedOrdinalNumberFormatter(locale: LocaleConvertible) -> NumberFormatter {
+	static func sharedOrdinalNumberFormatter(locale: LocaleConvertible) -> NumberFormatter {
 		var formatter: NumberFormatter?
 		let name = "SwiftDate_\(NSStringFromClass(NumberFormatter.self))"
 		formatter = threadSharedObject(key: name, create: { return NumberFormatter() })
@@ -135,7 +135,7 @@ public struct DateFormats {
 	public static let sql: String = "yyyy-MM-dd'T'HH:mm:ss.SSSX"
 
 	/// Reset the list of auto formats to the initial settings.
-	public static func resetAutoFormats() {
+	static func resetAutoFormats() {
 		autoFormats = DateFormats.builtInAutoFormat
 	}
 
@@ -147,12 +147,12 @@ public struct DateFormats {
 	///   - suggestedFormat: optional format of the date expressed by the string (set it if you can in order to optimize the parse task).
 	///   - region: region in which the date is expressed.
 	/// - Returns: parsed absolute `Date`, `nil` if parse fails.
-	public static func parse(string: String, format: String?, region: Region) -> Date? {
+	static func parse(string: String, format: String?, region: Region) -> Date? {
 		let formats = (format != nil ? [format!] : DateFormats.autoFormats)
 		return DateFormats.parse(string: string, formats: formats, region: region)
 	}
 
-	public static func parse(string: String, formats: [String], region: Region) -> Date? {
+	static func parse(string: String, formats: [String], region: Region) -> Date? {
 		let formatter = DateFormatter.sharedFormatter(forRegion: region)
 
 		var parsedDate: Date?
@@ -196,7 +196,9 @@ public extension Calendar.Component {
 		case .nanosecond: return NSCalendar.Unit.nanosecond
 		case .calendar: return NSCalendar.Unit.calendar
 		case .timeZone: return NSCalendar.Unit.timeZone
-		}
+        @unknown default:
+            fatalError()
+        }
 	}
 }
 
